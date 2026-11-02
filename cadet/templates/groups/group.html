@@ -2,7 +2,11 @@
     <h1>Група</h1>
     <ul>
     {% for cadet in cadets %}
-        <li>{{ cadet.lastname }} {{ cadet.firstname }}: {{ cadet.birthdate }}</li>
+    <li>
+        <a href="{% url 'cadet' cadet.id %}">
+            {{ cadet.lastname }} {{ cadet.firstname }}: {{ cadet.birthdate }}
+        </a>
+    </li>
     {% endfor %}
     </ul>
 {% else %}

@@ -1,0 +1,6 @@
+{% if cadet %}
+    <h1>Курсант</h1>
+    <h2>{{ cadet.lastname }} {{ cadet.firstname }}: {{ cadet.birthdate }}</h2>
+{% else %}
+    <h1>Курсант #{{ cadet.id }} не знайдений</h1>
+{% endif %}

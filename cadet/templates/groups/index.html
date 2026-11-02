@@ -2,7 +2,11 @@
     <h1>Групи:</h1>
     <ul>
     {% for group in groups %}
-        <li><a href="/cadet/{{ group.id }}/">{{ group.title }}</a></li>
+        <li>
+            <a href="{% url 'group' group.id %}">
+                {{ group.title }}
+            </a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
