@@ -1,0 +1,10 @@
+{% if cadets %}
+    <h1>Курсанти:</h1>
+    <ul>
+    {% for cadet in cadets %}
+        <li>{{ cadet.lastname }} {{ cadet.firstname }} : {{ cadet.birthdate }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h1>Курсанти відсутні</h1>
+{% endif %}

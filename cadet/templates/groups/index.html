@@ -1,0 +1,10 @@
+{% if groups %}
+    <h1>Групи:</h1>
+    <ul>
+    {% for group in groups %}
+        <li><a href="/cadet/{{ group.id }}/">{{ group.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h1>Групи відсутні</h1>
+{% endif %}
