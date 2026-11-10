@@ -1,3 +1,11 @@
+<ul>
+    <li>
+        <a href="/">Головна</a>
+    </li>
+    <li>
+        <a href="/cadet/{{ cadet.group.id }}">Група {{ cadet.group.title }}</a>
+    </li>
+</ul>
 {% if cadet %}
     <h1>Курсант</h1>
     <h2>{{ cadet.lastname }} {{ cadet.firstname }}: {{ cadet.birthdate }}</h2>
