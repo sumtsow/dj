@@ -24,6 +24,10 @@
         </thead>
         <tbody>
             <tr>
+                <th scope="row">Військове звання</th>
+                <td>{{ cadet.rank.title }}</td>
+            </tr>
+            <tr>
                 <th scope="row">Прізвище</th>
                 <td>{{ cadet.lastname }}</td>
             </tr>
@@ -33,7 +37,7 @@
             </tr>
             <tr>
                 <th scope="row">Дата народження</th>
-                <td>{{ cadet.birthdate }}</td>
+                <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
             </tr>
             <tr class="position-relative">
                 <th scope="row">Група</th>

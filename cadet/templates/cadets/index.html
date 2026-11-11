@@ -12,6 +12,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col">Військове звання</th>
                 <th scope="col">Прізвище, ім'я</th>
                 <th scope="col">Дата народження</th>
                 <th scope="col">Група</th>
@@ -20,8 +21,9 @@
         <tbody>
         {% for cadet in cadets %}
             <tr>
+                <td>{{ cadet.rank.title }}</td>
                 <td>{{ cadet.lastname }} {{ cadet.firstname }}</td>
-                <td>{{ cadet.birthdate }}</td>
+                <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
                 <td><a class="text-decoration-none" href="{% url 'group' cadet.group.id %}">{{ cadet.group.title }}</a></td>
             </tr>
         {% endfor %}                
