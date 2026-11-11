@@ -1,15 +1,33 @@
-<ul>
-    <li>
-        <a href="/">Головна</a>
-    </li>
-</ul>
+{% extends "base.html" %}
+
+{% block title %}Курсанти{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item">Курсанти</li>
+{% endblock %}
+
+{% block content %}
 {% if cadets %}
     <h1>Курсанти:</h1>
-    <ul>
-    {% for cadet in cadets %}
-        <li>{{ cadet.lastname }} {{ cadet.firstname }} : {{ cadet.birthdate }}</li>
-    {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Прізвище, ім'я</th>
+                <th scope="col">Дата народження</th>
+                <th scope="col">Група</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cadet in cadets %}
+            <tr>
+                <td>{{ cadet.lastname }} {{ cadet.firstname }}</td>
+                <td>{{ cadet.birthdate }}</td>
+                <td><a class="text-decoration-none" href="{% url 'group' cadet.group.id %}">{{ cadet.group.title }}</a></td>
+            </tr>
+        {% endfor %}                
+        </tbody>
+    </table>
 {% else %}
     <h1>Курсанти відсутні</h1>
 {% endif %}
+{% endblock %}

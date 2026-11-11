@@ -2,18 +2,31 @@
 
 {% block title %}Групи{% endblock %}
 
+{% block breadcrumbs %}
+    <li class="breadcrumb-item">
+        <a href="/cadet/cadet">Курсанти</a>
+    </li>
+{% endblock %}
+
 {% block content %}
     {% if groups %}
         <h1>Групи:</h1>
-        <ul>
-        {% for group in groups %}
-            <li>
-                <a href="{% url 'group' group.id %}">
-                    {{ group.title }}
-                </a>
-            </li>
-        {% endfor %}
-        </ul>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Шифр</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                <tr class="position-relative">
+                    <td>
+                        <a class="stretched-link text-decoration-none text-reset" href="{% url 'group' group.id %}">{{ group.title }}</a>
+                    </td>
+                </tr>
+            {% endfor %}                
+            </tbody>
+        </table>
     {% else %}
         <h1>Групи відсутні</h1>
     {% endif %}

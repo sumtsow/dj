@@ -8,15 +8,14 @@
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     </head>
     <body>
-        <div id="sidebar">
-        {% block sidebar %}
-            <ul>
-                <li>
-                    <a href="/">Home</a>
+        <nav aria-label="breadcrumb" class="p-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Головна</a>
                 </li>
-            </ul>
-        {% endblock %}
-        </div>
+                {% block breadcrumbs %}{% endblock %}
+            </ol>
+        </nav>
         <div class="container">
         {% block content %}{% endblock %}
         </div>

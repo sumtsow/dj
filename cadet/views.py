@@ -7,9 +7,7 @@ def index(request):
     return render( request, "groups/index.html", { "groups": Group.objects.all() })
 
 def group(request, group_id):
-    cadets = Cadet.objects.filter(group_id=group_id)
-    #print(cadets)
-    return render( request, "groups/group.html", { "cadets": cadets })
+    return render( request, "groups/group.html", { "cadets": Cadet.objects.filter(group_id=group_id), "group": get_object_or_404(Group, pk=group_id) })
 
 def cadets(request):
     return render( request, "cadets/index.html", { "cadets": Cadet.objects.all() })
