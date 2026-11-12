@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subject.title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'subjects' %}">Предмети</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h1>
+            Предмет<br/>
+            {{ subject.title }}
+        </h1>
+        <h2>Оцінки</h2>
+{% if cadets and subject %}
+        <table class="table table-striped">
+            <tbody>
+{% for lesson in lessons %}
+                <tr>
+                    
+                    {{ lesson.theme }}
+                    
+                </tr>
+{% endfor %}
+                
+            </tbody>
+        </table>
+{% else %}
+        <h3>Предмет або курсанти відсутні</h3>
+{% endif %} 
+    </div>
+</div>
+
+{% endblock %}

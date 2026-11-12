@@ -22,8 +22,9 @@ class Subject(models.Model):
         return self.title
 
 class Lesson(models.Model):
-    theme = models.CharField(max_length=64)
-    hours = models.IntegerField()
+    theme = models.CharField(max_length=128)
+    hours = models.IntegerField(default=0)
+    number = models.IntegerField(default=0)
     subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
