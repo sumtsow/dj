@@ -7,8 +7,11 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="row">
+    <div class="col">
+        <h1>Група {{ group.title }}</h1>
 {% if cadets %}
-    <h1>Група {{ group.title }}</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -30,6 +33,38 @@
             </tbody>
         </table>
 {% else %}
-    <h1>Курсанти в групі відсутні</h1>
+        <h3>Курсанти в групі відсутні</h3>
 {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+{% if subjects %}
+        <h3>Предмети</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Назва</th>
+                    <th scope="col">Семестр</th>
+                    <th scope="col">Годин</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for subject in subjects %}
+                <tr class="position-relative">
+                    <td>
+                        <a class="stretched-link text-decoration-none text-reset" href="{% url 'subject' subject.id %}">{{ subject.title }}</a>
+                    </td>
+                    <td>{{ subject.term }}</td>
+                    <td>{{ subject.hours }}</td>
+                </tr>
+            {% endfor %}                
+            </tbody>
+        </table>
+{% else %}
+        <h3>Предмети відсутні</h3>
+{% endif %}
+    </div>
+</div>
+
 {% endblock %}

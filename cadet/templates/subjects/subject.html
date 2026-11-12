@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subject.title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'subjects' %}">Предмети</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h1>Предмет</h1>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Назва</th>
+                        <td>{{ subject.title }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Семестр</th>
+                        <td>{{ subject.term }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Годин</th>
+                        <td>{{ subject.hours }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Групи</th>
+                        <td>
+                            {% if subject.groups %}
+                                {% for group in subject.groups.all %}
+                                    <a class="text-decoration-none" href="{% url 'group' group.id %}">{{ group.title }}</a><br/>
+                                {% endfor %}
+                            {% else %}
+                            Групи відсутні
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

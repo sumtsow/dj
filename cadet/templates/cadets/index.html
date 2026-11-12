@@ -7,8 +7,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col">
+       <h1>Курсанти</h1> 
 {% if cadets %}
-    <h1>Курсанти:</h1>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,6 +32,8 @@
         </tbody>
     </table>
 {% else %}
-    <h1>Курсанти відсутні</h1>
+    <h3>Курсанти відсутні</h3>
 {% endif %}
+    </div>
+</div>
 {% endblock %}

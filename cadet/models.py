@@ -13,8 +13,10 @@ class Rank(models.Model):
         return self.title
 
 class Subject(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=128)
     hours = models.IntegerField()
+    term = models.IntegerField(null=True)
+    groups = models.ManyToManyField(Group)
 
     def __str__(self):
         return self.title

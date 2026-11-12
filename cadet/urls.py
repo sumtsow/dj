@@ -9,4 +9,8 @@ urlpatterns = [
     path('cadet/', views.cadets, name='cadets'),
 
     path('cadet/<int:cadet_id>/', views.cadet, name='cadet'),
+
+    path('subject/', views.subjects, name='subjects'),
+
+    path('subject/<int:subject_id>/', views.subject, name='subject'),
 ]

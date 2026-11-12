@@ -4,50 +4,54 @@
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item">
-        <a href="/cadet/cadet">Курсанти</a>
+        <a href="{% url 'cadets' %}">Курсанти</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="/cadet/{{ cadet.group.id }}">Група {{ cadet.group.title }}</a>
+        <a href="{% url 'group' cadet.group.id %}">Група {{ cadet.group.title }}</a>
     </li>
     <li class="breadcrumb-item">Курсант</li>
 {% endblock %}
 
 {% block content %}
+<div class="row">
+    <div class="col">
 {% if cadet %}
-    <h1>Курсант</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Поле</th>
-                <th scope="col">Значення</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Військове звання</th>
-                <td>{{ cadet.rank.title }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Прізвище</th>
-                <td>{{ cadet.lastname }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Ім'я</th>
-                <td>{{ cadet.firstname }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Дата народження</th>
-                <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
-            </tr>
-            <tr class="position-relative">
-                <th scope="row">Група</th>
-                <td>
-                    <a class="stretched-link text-decoration-none text-reset" href="{% url 'group' cadet.group.id %}">{{ cadet.group.title }}</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <h1>Курсант</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Поле</th>
+                    <th scope="col">Значення</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Військове звання</th>
+                    <td>{{ cadet.rank.title }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Прізвище</th>
+                    <td>{{ cadet.lastname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ім'я</th>
+                    <td>{{ cadet.firstname }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Дата народження</th>
+                    <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
+                </tr>
+                <tr class="position-relative">
+                    <th scope="row">Група</th>
+                    <td>
+                        <a class="stretched-link text-decoration-none" href="{% url 'group' cadet.group.id %}">{{ cadet.group.title }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 {% else %}
-    <h1>Курсант #{{ cadet.id }} не знайдений</h1>
+        <h3>Курсант #{{ cadet.id }} не знайдений</h3>
 {% endif %}
+    </div>
+</div>
 {% endblock %}
