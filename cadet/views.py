@@ -12,9 +12,6 @@ def index(request):
 def group(request, group_id):
     return render( request, "groups/group.html", { "cadets": Cadet.objects.filter(group_id=group_id), "group": get_object_or_404(Group, pk=group_id), "subjects": Subject.objects.filter(groups__id=group_id) })
 
-def subject_group(request, group_id, subject_id):
-    return render( request, "groups/group.html", { "cadets": Cadet.objects.filter(group_id=group_id), "subject": get_object_or_404(Subject, pk=subject_id), "lessons": Lesson.objects.filter(subject_id=subject_id) })
-
 def cadets(request):
     return render( request, "cadets/index.html", { "cadets": Cadet.objects.all() })
 
@@ -26,3 +23,6 @@ def subjects(request):
 
 def subject(request, subject_id):
     return render( request, "subjects/subject.html", { "subject": get_object_or_404(Subject, pk=subject_id), "lessons": Lesson.objects.filter(subject_id=subject_id) })
+
+def subject_group(request, group_id, subject_id):
+    return render( request, "subjects/subject_group.html", { "cadets": Cadet.objects.filter(group_id=group_id), "subject": get_object_or_404(Subject, pk=subject_id), "lessons": Lesson.objects.filter(subject_id=subject_id) })

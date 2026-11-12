@@ -12,9 +12,9 @@ urlpatterns = [
 
     path('cadet/<int:cadet_id>/', views.cadet, name='cadet'),
 
-    path('subject/', views.subjects, name='subjects'),
+    path('subject/<int:subject_id>/', views.subject, name='subject'),
 
     path('subject/<int:group_id>/<int:subject_id>/', views.subject_group, name='subject_group'),
 
-    path('subject/<int:subject_id>/', views.subject, name='subject'),
+    path('subject/', views.subjects, name='subjects'),
 ]
