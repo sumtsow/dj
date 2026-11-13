@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from debug_toolbar.toolbar import debug_toolbar_urls
 from django.urls import include, path
 from cadet import views
 
@@ -22,4 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cadet/', include('cadet.urls')),
     path('', views.index, name='index'),
-]
+] + debug_toolbar_urls()

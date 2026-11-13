@@ -38,7 +38,7 @@ class Cadet(models.Model):
     rank = models.ForeignKey(Rank, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.lastname + " " + self.firstname
+        return self.rank.title + " " + self.lastname + " " + self.firstname
 
 class Mark(models.Model):
     value = models.IntegerField()
@@ -46,4 +46,4 @@ class Mark(models.Model):
     cadet = models.ForeignKey(Cadet, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.value
+        return f"{ self.value }"

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_filters %}
 
 {% block title %}{{ subject.title }}{% endblock %}
 
@@ -16,17 +17,29 @@
             {{ subject.title }}
         </h1>
         <h2>Оцінки</h2>
-{% if cadets and subject %}
-        <table class="table table-striped">
-            <tbody>
-{% for lesson in lessons %}
+{% if cadets and lessons %}
+        <table class="table table-bordered table-striped">
+            <thead>
                 <tr>
-                    
-                    {{ lesson.theme }}
-                    
+                    <th scope="col">Заняття</th>
+{% for lesson in lessons %}
+                    <th scope="col" style="writing-mode: sideways-lr;">
+                    {{ lesson.number }} - {{ lesson.theme }}
+                    </th>
+{% endfor %}
+                </tr>                
+            </thead>
+            <tbody>
+{% for cadet in cadets %}
+                <tr>
+                    <td>{{ cadet }}</td>
+{% for lesson in lessons %}
+                    <td class="text-center">
+                        {{ marks|get_mark:[{'lid': lesson.id}, {'cid': cadet.id}] }}
+                    </td>
+{% endfor %}
                 </tr>
 {% endfor %}
-                
             </tbody>
         </table>
 {% else %}
