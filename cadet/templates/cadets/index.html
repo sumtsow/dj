@@ -26,7 +26,7 @@
                 <td>{{ cadet.rank.title }}</td>
                 <td>{{ cadet.lastname }} {{ cadet.firstname }}</td>
                 <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
-                <td><a class="text-decoration-none" href="{% url 'group' cadet.group.id %}">{{ cadet.group.title }}</a></td>
+                <td><a class="text-decoration-none" href="{% url 'group' cadet.group_id %}">{{ cadet.group.title }}</a></td>
             </tr>
         {% endfor %}                
         </tbody>

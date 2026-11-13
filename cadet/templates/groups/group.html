@@ -39,7 +39,7 @@
 </div>
 <div class="row">
     <div class="col">
-{% if subjects %}
+{% if group.subject_set %}
         <h3>Предмети</h3>
         <table class="table table-striped">
             <thead>
@@ -50,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for subject in subjects %}
+            {% for subject in group.subject_set.all %}
                 <tr class="position-relative">
                     <td>
                         <a class="stretched-link text-decoration-none text-reset" href="{% url 'subject' subject.id %}">{{ subject.title }}</a>

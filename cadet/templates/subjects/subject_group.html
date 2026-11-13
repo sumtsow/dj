@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load custom_filters %}
 
 {% block title %}{{ subject.title }}{% endblock %}
 
@@ -35,7 +34,11 @@
                     <td>{{ cadet }}</td>
 {% for lesson in lessons %}
                     <td class="text-center">
-                        {{ marks|get_mark:[{'lid': lesson.id}, {'cid': cadet.id}] }}
+{% for mark in marks %}
+{% if mark.cadet_id == cadet.id and mark.lesson_id == lesson.id %}
+                        {{ mark }}
+{% endif %}
+{% endfor %}
                     </td>
 {% endfor %}
                 </tr>
