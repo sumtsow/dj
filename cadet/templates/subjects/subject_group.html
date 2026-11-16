@@ -22,8 +22,8 @@
                 <tr>
                     <th scope="col">Заняття</th>
 {% for lesson in lessons %}
-                    <th scope="col" style="writing-mode: sideways-lr;">
-                    {{ lesson.number }} - {{ lesson.theme }}
+                    <th scope="col" class="align-top" title="{{ lesson }}">
+                        {{ lesson.date|date:"d.m.y" }}<br/>{{ lesson.get_type_of_act_display }} №{{ forloop.counter }}
                     </th>
 {% endfor %}
                 </tr>                

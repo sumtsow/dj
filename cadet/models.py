@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 class Group(models.Model):
@@ -25,6 +26,20 @@ class Lesson(models.Model):
     theme = models.CharField(max_length=128)
     hours = models.IntegerField(default=0)
     number = models.IntegerField(default=0)
+    date = models.DateField(default=datetime.date.today())
+    TYPE_OF_ACT_CHOICES = {
+        'lect': 'Лекція',
+        'group': 'ГЗ',
+        'pract': 'ПЗ',
+        'lab': 'ЛЗ',
+        'sem': 'Семінар',
+        'test': 'Залік',
+    }
+    type_of_act = models.CharField(
+        max_length=7,
+        choices=TYPE_OF_ACT_CHOICES,
+        default='lect',
+    )
     subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
@@ -33,7 +48,7 @@ class Lesson(models.Model):
 class Cadet(models.Model):
     lastname = models.CharField(max_length=128)
     firstname = models.CharField(max_length=128)
-    birthdate = models.DateField()
+    birthdate = models.DateField(default=datetime.date.today())
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     rank = models.ForeignKey(Rank, on_delete=models.SET_NULL, null=True)
 
