@@ -1,4 +1,7 @@
 from django.shortcuts import get_object_or_404, render
+#from django.http import JsonResponse
+from django.http import HttpResponse
+from django.core import serializers
 
 from .models import Group, Cadet, Subject, Lesson, Mark, Rank
 
@@ -11,6 +14,19 @@ def index(request):
 
 def group(request, group_id):
     return render( request, 'groups/group.html', {'group': get_object_or_404(Group, pk=group_id), 'cadets': Cadet.objects.prefetch_related('rank').filter(group_id=group_id)  })
+
+def index_api(request):
+    return render( request, 'api/index.html')
+
+def groups_api(request):
+    groups = Group.objects.all()
+    data = serializers.serialize('json', groups)
+    return HttpResponse(data, content_type='application/json')
+
+def subjects_api(request):
+    subjects = Subject.objects.all()
+    data = serializers.serialize('json', subjects)
+    return HttpResponse(data, content_type='application/json')
 
 def cadets(request):
     return render( request, 'cadets/index.html', { 'cadets': Cadet.objects.prefetch_related('group', 'rank').all(), 'groups': Group.objects.all() })

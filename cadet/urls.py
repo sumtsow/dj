@@ -17,4 +17,10 @@ urlpatterns = [
     path('subject/<int:group_id>/<int:subject_id>/', views.subject_group, name='subject_group'),
 
     path('subject/', views.subjects, name='subjects'),
+
+    path('api/', views.index_api, name='index_api'),
+
+    path('api/groups', views.groups_api, name='groups_api'),
+
+    path('api/subjects', views.subjects_api, name='subjects_api'),
 ]
