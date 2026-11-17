@@ -1,69 +1,21 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extra_js %}
+<script src="{% static 'script.js' %}"></script>
+{% endblock %}
 
 {% block title %}Rest API{% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item">
-        <a href="{% url 'cadets' %}">Курсанти</a>
+        <a id="breadcrumb-cadets" href="#">Курсанти</a>
     </li>
 {% endblock %}
 
 {% block content %}
-<script>
-function groupsReqListener() {
-    let groupsList = document.getElementById('groups-list');
-
-    const groups = JSON.parse(this.response);
-    for (const group of groups) {
-        let tr = document.createElement('tr');
-        tr.classList.add('position-relative');
-        let td = document.createElement('td');
-        let a = document.createElement('a');
-        a.innerText = group.fields.title;
-        a.href = window.location.origin + '/cadet/' + group.pk;
-        a.setAttribute('class', 'stretched-link text-decoration-none text-reset');
-        td.append(a);
-        tr.append(td);
-        groupsList.append(tr);
-    }
-}
-
-function subjectsReqListener() {
-    let subjectsList = document.getElementById('subjects-list');
-
-    const subjects = JSON.parse(this.response);
-    for (const subject of subjects) {
-        let tr = document.createElement('tr');
-        tr.classList.add('position-relative');
-        let td = document.createElement('td');
-        let a = document.createElement('a');
-        a.innerText = subject.fields.title;
-        a.href = window.location.origin + '/cadet/subject/' + subject.pk;
-        a.setAttribute('class', 'stretched-link text-decoration-none text-reset');
-        td.append(a);
-        tr.append(td);
-        subjectsList.append(tr);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const reqGroups = new XMLHttpRequest();
-    reqGroups.addEventListener('load', groupsReqListener);
-    reqGroups.open('GET', window.location.origin + '/cadet/api/groups');
-    reqGroups.send();
-
-    const reqSubjects = new XMLHttpRequest();
-    reqSubjects.addEventListener('load', subjectsReqListener);
-    reqSubjects.open('GET', window.location.origin + '/cadet/api/subjects');
-    reqSubjects.send();
-});
-
-
-</script>
-
 <h1>Rest API</h1>
     <div class="row">
-        <div class="col">
+        <div id="col-1" class="col">
             <h1>Групи</h1>
             <table class="table table-striped">
                 <thead>
@@ -74,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <tbody id="groups-list"></tbody>
             </table>
         </div>
-        <div class="col">
+        <div id="col-2" class="col">
             <h1>Предмети</h1>
             <table class="table table-striped">
                 <thead>

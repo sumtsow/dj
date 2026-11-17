@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}My site{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        {% block extra_js %}{% endblock %}
     </head>
     <body>
         <nav aria-label="breadcrumb" class="p-3">
@@ -16,10 +18,8 @@
                 {% block breadcrumbs %}{% endblock %}
             </ol>
         </nav>
-        <div class="container-fluid">
+        <div id="content" class="container-fluid">
         {% block content %}{% endblock %}
         </div>
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-        {% block extra_js %}{% endblock %}
     </body>
 </html>

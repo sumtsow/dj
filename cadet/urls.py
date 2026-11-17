@@ -20,7 +20,9 @@ urlpatterns = [
 
     path('api/', views.index_api, name='index_api'),
 
-    path('api/groups', views.groups_api, name='groups_api'),
+    path('api/groups', views.groups_api),
 
-    path('api/subjects', views.subjects_api, name='subjects_api'),
+    path('api/subjects', views.subjects_api),
+
+    path('api/cadets', views.cadets_api),
 ]
