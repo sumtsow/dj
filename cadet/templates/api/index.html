@@ -20,7 +20,7 @@ function groupsReqListener() {
         let td = document.createElement('td');
         let a = document.createElement('a');
         a.innerText = group.fields.title;
-        a.href = 'http://dj/cadet/' + group.pk;
+        a.href = window.location.origin + '/cadet/' + group.pk;
         a.setAttribute('class', 'stretched-link text-decoration-none text-reset');
         td.append(a);
         tr.append(td);
@@ -38,7 +38,7 @@ function subjectsReqListener() {
         let td = document.createElement('td');
         let a = document.createElement('a');
         a.innerText = subject.fields.title;
-        a.href = 'http://dj/cadet/subject/' + subject.pk;
+        a.href = window.location.origin + '/cadet/subject/' + subject.pk;
         a.setAttribute('class', 'stretched-link text-decoration-none text-reset');
         td.append(a);
         tr.append(td);
@@ -49,12 +49,12 @@ function subjectsReqListener() {
 document.addEventListener("DOMContentLoaded", () => {
     const reqGroups = new XMLHttpRequest();
     reqGroups.addEventListener('load', groupsReqListener);
-    reqGroups.open('GET', 'http://dj/cadet/api/groups');
+    reqGroups.open('GET', window.location.origin + '/cadet/api/groups');
     reqGroups.send();
 
     const reqSubjects = new XMLHttpRequest();
     reqSubjects.addEventListener('load', subjectsReqListener);
-    reqSubjects.open('GET', 'http://dj/cadet/api/subjects');
+    reqSubjects.open('GET', window.location.origin + '/cadet/api/subjects');
     reqSubjects.send();
 });
 
