@@ -37,7 +37,8 @@ function subjectsReqListener() {
 function cadetsReqListener() {
     const cadets = JSON.parse(this.response.cadets);
     const groups = this.response.groups;
-    const ranks = JSON.parse(this.response.ranks);
+    const ranks = this.response.ranks;
+    console.log(cadets);
     console.log(groups);
     console.log(ranks);
     const template = this.response.template;
