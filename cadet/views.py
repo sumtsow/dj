@@ -40,12 +40,12 @@ def index_api(request):
 def groups_api(request):
     groups = Group.objects.all()
     data = serialize('json', groups)
-    return JsonResponse(data)
+    return JsonResponse(data, safe=False)
 
 def subjects_api(request):
     subjects = Subject.objects.all()
     data = serialize('json', subjects)
-    return JsonResponse(data)
+    return JsonResponse(data, safe=False)
 
 def cadets_api(request):
     cadets = Cadet.objects.all()

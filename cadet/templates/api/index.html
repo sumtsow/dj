@@ -12,30 +12,31 @@
     </li>
 {% endblock %}
 
+{% block page-title %}Rest API{% endblock %}
+
 {% block content %}
-<h1>Rest API</h1>
-    <div class="row">
-        <div id="col-1" class="col">
-            <h1>Групи</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Шифр</th>
-                    </tr>
-                </thead>
-                <tbody id="groups-list"></tbody>
-            </table>
-        </div>
-        <div id="col-2" class="col">
-            <h1>Предмети</h1>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Назва</th>
-                    </tr>
-                </thead>
-                <tbody id="subjects-list"></tbody>
-            </table>
-        </div>
+<div class="row">
+    <div id="col-1" class="col">
+        <h1>Групи</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Шифр</th>
+                </tr>
+            </thead>
+            <tbody id="groups-list"></tbody>
+        </table>
     </div>
+    <div id="col-2" class="col">
+        <h1>Предмети</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Назва</th>
+                </tr>
+            </thead>
+            <tbody id="subjects-list"></tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
