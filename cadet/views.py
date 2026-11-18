@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import JsonResponse
 #from django.http import HttpResponse
 from django.core.serializers import serialize
+#import pdb; pdb.set_trace();
 
 from .models import Group, Cadet, Subject, Lesson, Mark, Rank
 
@@ -49,7 +50,25 @@ def subjects_api(request):
 
 def cadets_api(request):
     cadets = Cadet.objects.all()
+    groups = Group.objects.exclude(cadet=None)
+    group_attrs = objKeyList(Group)
+    groups_str = ', '.join(group_attrs)
+    group_list = []
+    for group in groups:
+        item = {}
+        for attr in group_attrs:
+            item.append(attr: group[attr])
+        group_list.append(item)
+    ranks = Rank.objects.exclude(cadet=None)
     cadets_str = serialize('json', cadets)
-    template = {'container': '<div class="row"><div class="col"><h1>Курсанти</h1><table class="table table-striped"><thead><tr><th scope="col">Військове звання</th><th scope="col">Прізвище, ім&apos;я</th><th scope="col">Дата народження</th><th scope="col">Група</th></tr></thead><tbody>${ content }</tbody></table></div></div>', 'cadet': '<tr><td>${ cadet.rank.title }</td><td>${ cadet.lastname } ${ cadet.firstname }</td><td>${ cadet.birthdate }</td><td><a class="text-decoration-none" href="#">${ cadet.group.title }</a></td></tr>'}
-    data = {'cadets': cadets_str, 'template': template}
+    #groups_str = serialize('json', group_attrs)
+    ranks_str = serialize('json', ranks)
+    template = {'container': '<div class="row"><div class="col"><h1>Курсанти</h1><table class="table table-striped"><thead><tr><th scope="col">Військове звання</th><th scope="col">Прізвище, ім&apos;я</th><th scope="col">Дата народження</th><th scope="col">Група</th></tr></thead><tbody>${ content }</tbody></table></div></div>', 'cadet': '<tr><td>${ cadet.rank.title }</td><td>${ cadet.fields.lastname } ${ cadet.fields.firstname }</td><td>${ cadet.fields.birthdate }</td><td><a class="text-decoration-none" href="#">${ cadet.group.title }</a></td></tr>'}
+    data = {'cadets': cadets_str, 'groups': groups_str, 'ranks': ranks_str, 'template': template}
     return JsonResponse(data, safe=False)
+
+def objKeyList(obj):
+    keys = []
+    for field in obj._meta.fields:
+        keys.append(field.name.split('.')[-1])
+    return keys

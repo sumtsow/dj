@@ -36,16 +36,19 @@ function subjectsReqListener() {
 
 function cadetsReqListener() {
     const cadets = JSON.parse(this.response.cadets);
+    const groups = this.response.groups;
+    const ranks = JSON.parse(this.response.ranks);
+    console.log(groups);
+    console.log(ranks);
     const template = this.response.template;
     const container = document.getElementById('content');
     let data = {content: ''};
     let html = '';
-    for (cadet in cadets) {
+    for (cadet of cadets) {
         html += renderTemplate(template.cadet, {cadet: cadet})
     }
     
     //let tplRow = String.raw({ raw: template.container}, content);
-    console.log(html);
     let tplRow = template.container;
     let row = renderTemplate(tplRow, {content: html});
     container.innerHTML = row;

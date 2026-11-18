@@ -9,7 +9,8 @@
 {% block content %}
 <div class="row">
     <div class="col">
-       <h1>Курсанти</h1> 
+       <h1>Курсанти</h1>
+       <p>{{ group_attrs }}</p>
 {% if cadets %}
         <table class="table table-striped">
             <thead>
@@ -28,7 +29,7 @@
                     <td>{{ cadet.birthdate|date:"d.m.Y" }}</td>
                     <td><a class="text-decoration-none" href="{% url 'group' cadet.group_id %}">{{ cadet.group.title }}</a></td>
                 </tr>
-{% endfor %}                
+{% endfor %}    
             </tbody>
         </table>
 {% else %}
