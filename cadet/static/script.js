@@ -38,21 +38,19 @@ function cadetsReqListener() {
     const cadets = JSON.parse(this.response.cadets);
     const groups = this.response.groups;
     const ranks = this.response.ranks;
-    console.log(cadets);
-    console.log(groups);
-    console.log(ranks);
     const template = this.response.template;
     const container = document.getElementById('content');
-    let data = {content: ''};
     let html = '';
+    let rank, group, date;
     for (cadet of cadets) {
+        cadet.rank = ranks.find(elem => elem.id == cadet.fields.rank);
+        cadet.group = groups.find(elem => elem.id == cadet.fields.group);
+        date = new Date(cadet.fields.birthdate);
+        cadet.fields.birthdate = date.toLocaleDateString();
         html += renderTemplate(template.cadet, {cadet: cadet})
     }
-    
-    //let tplRow = String.raw({ raw: template.container}, content);
-    let tplRow = template.container;
-    let row = renderTemplate(tplRow, {content: html});
-    container.innerHTML = row;
+    let content = renderTemplate(template.container, {content: html});
+    container.innerHTML = content;
 }
 
 function renderTemplate(str, data) {
