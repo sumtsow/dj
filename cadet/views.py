@@ -13,7 +13,18 @@ def index(request):
     return render( request, 'groups/index.html', { 'groups': Group.objects.all(), 'subjects': Subject.objects.all() })
 
 def group(request, group_id):
-    return render( request, 'groups/group.html', {'group': get_object_or_404(Group, pk=group_id), 'cadets': Cadet.objects.prefetch_related('rank').filter(group_id=group_id) })
+
+    sort = 'firstname'
+    if request.GET.get('sort') <> 'NONE':
+        sort = request.GET.get('sort')
+    order = ''
+    if sort[0] == '-':
+        order = '-'
+    cadets = Cadet.objects.prefetch_related('rank').filter(group_id=group_id).order_by(order + sort)
+    if order == '-':
+        order = ''
+    else order = '-'
+    return render( request, 'groups/group.html', {'group': get_object_or_404(Group, pk=group_id), 'cadets': cadets, 'sort': order + sort })
 
 def cadets(request):
     return render( request, 'cadets/index.html', { 'cadets': Cadet.objects.prefetch_related('group', 'rank').all(), 'groups': Group.objects.all(), 'cadet_js': getJSObjectsFromQSet( Cadet.objects.all(), Cadet ) })

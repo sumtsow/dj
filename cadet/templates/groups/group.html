@@ -11,11 +11,16 @@
 <div class="row">
     <div class="col">
         <h1>Група {{ group.title }}</h1>
+        <p>{{ sort }}</p>
 {% if cadets %}
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Військове звання</th>
+                    <th scope="col">
+                        <a class="text-decoration-none" href="{% url 'group' group.id %}?sort=rank">
+                        Військове звання
+                        </a>
+                    </th>
                     <th scope="col">Прізвище, ім'я</th>
                     <th scope="col">Дата народження</th>
                 </tr>
